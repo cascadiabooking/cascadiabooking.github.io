@@ -1431,7 +1431,6 @@ header .header-logo a {
   display: block;
   height: 30px;
   width: 30px;
-  border-radius: 3px;
   background-color: rgba(0, 0, 0, 0.3);
   position: absolute;
   top: 36px;
@@ -2922,7 +2921,6 @@ footer h4.h05::after {
 #go-top a {
   text-decoration: none;
   border: 0 none;
-  border-radius: 30px;
   display: block;
   height: 42px;
   width: 42px;
