@@ -1346,8 +1346,8 @@ header .header-logo a {
  * off-canvas menu - (_layout.scss)
  * ------------------------------------------------------------------- */
 #menu-nav-wrap {
-  background: #0C0C0C;
-  color: rgba(255, 255, 255, 0.25);
+  background: #f0b029;
+  color: rgba(255, 255, 255, 0.8);
   font-size: 1.5rem;
   line-height: 1.6;
   padding: 3.6rem 3rem;
@@ -1371,7 +1371,7 @@ header .header-logo a {
   transition: all 0.4s ease-in-out;
 }
 #menu-nav-wrap a, #menu-nav-wrap a:visited {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.8);
 }
 #menu-nav-wrap a:hover, #menu-nav-wrap a:focus, #menu-nav-wrap a:active {
   color: white;
@@ -1399,7 +1399,7 @@ header .header-logo a {
   border-top: 1px dotted rgba(255, 255, 255, 0.03);
 }
 #menu-nav-wrap .nav-list li a {
-  color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.8);
   display: block;
 }
 #menu-nav-wrap .nav-list li a:hover,
@@ -1418,7 +1418,7 @@ header .header-logo a {
   display: inline-block;
 }
 #menu-nav-wrap .header-social-list li a {
-  color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.7);
 }
 #menu-nav-wrap .header-social-list li a:hover,
 #menu-nav-wrap .header-social-list li a:focus {
@@ -1789,7 +1789,7 @@ html[data-useragent*='MSIE 10.0'] .scrolldown,
   font-family: "montserrat-bold", sans-serif;
   font-size: 1.8rem;
   line-height: 1.667;
-  color: #07617d;
+  color: #000;
   text-transform: uppercase;
   letter-spacing: .3rem;
   position: relative;
@@ -2008,7 +2008,7 @@ html[data-useragent*='MSIE 10.0'] .scrolldown,
 }
 #portfolio .intro-wrap {
   padding: 15rem 0 21rem;
-  background: #111111;
+  background: #fff;
 }
 #portfolio .section-intro h3 {
   color: rgba(242, 242, 242, 0.5);
@@ -2041,6 +2041,173 @@ html[data-useragent*='MSIE 10.0'] .scrolldown,
 }
 
 /* -------------------------------------------------------------------
+ * ## portfolio list
+ * ------------------------------------------------------------------- */
+.folio-list {
+    margin-top    : var(--vspace-2_5);
+    margin-bottom : var(--vspace-2);
+}
+
+.folio-item {
+    position : relative;
+    overflow : hidden;
+}
+
+.folio-item__caption {
+    display : none;
+}
+
+/* thumbnail
+ */
+.folio-item__thumb a {
+    display : block;
+}
+
+.folio-item__thumb a::before {
+    z-index          : 1;
+    content          : "";
+    display          : block;
+    background-color : rgba(0, 0, 0, 0.85);
+    opacity          : 0;
+    visibility       : hidden;
+    position         : absolute;
+    top              : 0;
+    left             : 0;
+    right            : 0;
+    bottom           : 0;
+    width            : 100%;
+    height           : 100%;
+    transition       : all, .5s;
+}
+
+.folio-item__thumb a::after {
+    z-index     : 1;
+    content     : "...";
+    text-align  : center;
+    font-family : var(--font-1);
+    font-weight : 300;
+    font-size   : 3rem;
+    color       : white;
+    display     : block;
+    height      : 3.2rem;
+    width       : 3.2rem;
+    line-height : 3.2rem;
+    margin-left : -1.6rem;
+    margin-top  : -3rem;
+    text-align  : center;
+    opacity     : 0;
+    visibility  : hidden;
+    transform   : scale(0.5);
+    transition  : all, 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    position    : absolute;
+    left        : 50%;
+    top         : 50%;
+}
+
+.folio-item__thumb img {
+    vertical-align : bottom;
+    margin-bottom  : 0;
+    transition     : all, 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+/* portfolio info
+ */
+.folio-item__info {
+    z-index    : 2;
+    padding    : 0 3rem;
+    transform  : translateY(-100%);
+    opacity    : 0;
+    visibility : hidden;
+    transition : all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    position   : absolute;
+    left       : 0;
+    top        : var(--vspace-1);
+}
+
+.folio-item__title {
+    font-size   : calc(var(--text-size) * 0.8889);
+    line-height : 1.25;
+    margin      : 0;
+    color       : white;
+}
+
+.folio-item__cat {
+    font-family   : var(--font-2);
+    font-size     : 1.2rem;
+    font-size     : calc(var(--text-size) * 0.6667);
+    line-height   : 1.5;
+    margin-bottom : 0.2rem;
+    color         : rgba(255, 255, 255, 0.5);
+}
+
+.folio-item__project-link {
+    z-index          : 2;
+    display          : block;
+    font-weight      : 400;
+    font-size        : 1.2rem;
+    line-height      : 2rem;
+    color            : white;
+    background-color : transparent;
+    border           : 1px solid rgba(255, 255, 255, 0.3);
+    padding          : .6rem 1.2rem;
+    opacity          : 0;
+    visibility       : hidden;
+    transform        : translateX(-100%);
+    transition       : all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+    position         : absolute;
+    bottom           : var(--vspace-1);
+    left             : 3rem;
+}
+
+.folio-item__project-link::before {
+    display          : block;
+    content          : "";
+    height           : 1px;
+    width            : 3rem;
+    background-color : rgba(255, 255, 255, 0.3);
+    position         : absolute;
+    top              : 50%;
+    left             : -3rem;
+}
+
+.folio-item__project-link:focus,
+.folio-item__project-link:hover,
+.folio-item__project-link:active {
+    background-color : white;
+    border           : 1px solid white;
+    color            : black;
+}
+
+/* on hover
+ */
+.folio-item:hover .folio-item__thumb img {
+    transform : scale(1.05);
+}
+
+.folio-item:hover .folio-item__thumb a::before {
+    opacity    : 1;
+    visibility : visible;
+}
+
+.folio-item:hover .folio-item__thumb a::after {
+    opacity    : 1;
+    visibility : visible;
+    transform  : scale(1);
+}
+
+.folio-item:hover .folio-item__info {
+    opacity    : 1;
+    visibility : visible;
+    transform  : translateY(0);
+}
+
+.folio-item:hover .folio-item__project-link {
+    opacity    : 1;
+    visibility : visible;
+    transform  : translateX(0);
+}
+
+/* -------------------------------------------------------------------
  * masonry entries - (_layout.css)
  * ------------------------------------------------------------------- */
 .bricks-wrapper .item-wrap {
@@ -2061,7 +2228,7 @@ html[data-useragent*='MSIE 10.0'] .scrolldown,
 .bricks-wrapper .item-wrap .overlay::before {
   content: "";
   display: block;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(240, 176, 41, 0.8);
   opacity: 0;
   visibility: hidden;
   position: absolute;
@@ -2504,8 +2671,7 @@ html[data-useragent*='MSIE 10.0'] .scrolldown,
  *
  * ------------------------------------------------------------------- */
 #contact {
-  background-color: #111111;
-  background-image: url(../images/contact-bg.jpg);
+  background-color: #fff;
   background-repeat: no-repeat;
   background-position: center;
   -webkit-background-size: cover;
@@ -2521,7 +2687,7 @@ html[data-useragent*='MSIE 10.0'] .scrolldown,
   width: 100%;
   height: 100%;
   opacity: .75;
-  background-color: #000000;
+  background-color: #fff;
 }
 #contact .section-intro h1 {
   color: white;
@@ -2535,17 +2701,17 @@ html[data-useragent*='MSIE 10.0'] .scrolldown,
 
 .contact-content {
   max-width: 1024px;
-  color: #FFFFFF;
+  color: #000;
   z-index: 600;
   position: relative;
   text-align: center;
 }
 .contact-content h5 {
-  color: #FFFFFF;
+  color: #000;
   margin-bottom: 5.4rem;
 }
 .contact-content h6 {
-  color: #ffffff;
+  color: #000;
   font-size: 1.4rem;
 }
 
@@ -2801,6 +2967,7 @@ footer {
   margin: 0 0 5.4rem 0;
   padding: 0;
   font-size: 1.5rem;
+  letter-spacing: .3rem;
   color: rgba(255, 255, 255, 0.4);
 }
 footer a, footer a:visited {
